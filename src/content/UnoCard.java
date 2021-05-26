@@ -35,7 +35,7 @@ public class UnoCard {
     enum Value
     {
         ZERO, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, 
-        DRAWTWO, SKIP, REVERSE;
+        DRAWTWO, SKIP, REVERSE, WILD, WILDFOUR;
         
         private static Value[] values = Value.values();
         public static Value getValue(int i)
