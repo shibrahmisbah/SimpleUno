@@ -272,10 +272,39 @@ public class Game {
                     JOptionPane.showMessageDialog(null, messageV);
                     throw new InvalidValueSubmissionException(messageV, actualValue, expectedValue);
                 }
-                
-                
+            }//end of if block
             
+            pHand.remove(card);
+            
+            //declaring winner
+            if(hasEmptyHand(playerIds[currentPlayer]))
+            {
+                JLabel message = new JLabel(playerIds[currentPlayer]
+                                            + " won the game. Thank you for playing!");
+                    message.setFont(new Font("Arial", Font.BOLD, 38));
+                    JOptionPane.showMessageDialog(null, message);
+                    System.exit(0);
             }
+            
+            validColor = card.getColor();
+            validValue = card.getValue();
+            stockpile.add(card);
+            
+            if(gameDirection == false)
+                {
+                    currentPlayer = (currentPlayer + 1) % playerIds.length;
+                }
+                else if(gameDirection == true)
+                {
+                    currentPlayer = (currentPlayer - 1) % playerIds.length;
+                    if(currentPlayer == -1)
+                    {
+                        currentPlayer = playerIds.length - 1;
+                    }
+                }
+            
+            
+            
         }
         
         }//end of game class
