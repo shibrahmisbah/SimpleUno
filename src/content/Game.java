@@ -248,7 +248,7 @@ public class Game {
             UnoCard.Value expectedValue = validValue;
             
             
-            if(!validCardPlay(card))
+           if(!validCardPlay(card))
             {
                 if(card.getColor() == UnoCard.Color.WILD)
                 {
@@ -259,21 +259,22 @@ public class Game {
                 if(card.getColor() != validColor)
                 {
                     JLabel messageC = new JLabel("Invalid player move, expected color:"
-                            + expectedColor + " but got color " + actualColor);
+                            + validColor + " but got color " + card.getColor());
                     messageC.setFont(new Font("Arial", Font.BOLD, 38));
                     JOptionPane.showMessageDialog(null, messageC);
-                    throw new InvalidColorSubmissionException(messageC, actualColor, expectedColor);
+                    throw new InvalidColorSubmissionException(messageC, card.getColor(), validColor);
                 }
                 
                 if(card.getValue() != validValue)
                 {
                     JLabel messageV = new JLabel("Invalid player move, expected color:"
-                            + expectedValue + " but got color " + actualValue);
+                            + validValue + " but got color " + card.getValue());
                     messageV.setFont(new Font("Arial", Font.BOLD, 38));
                     JOptionPane.showMessageDialog(null, messageV);
-                    throw new InvalidValueSubmissionException(messageV, actualValue, expectedValue);
+                    throw new InvalidValueSubmissionException(messageV, card.getValue(), validValue);
                 }
             }//end of if block
+            
             
             pHand.remove(card);
             
