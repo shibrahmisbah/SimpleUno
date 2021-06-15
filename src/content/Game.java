@@ -22,9 +22,9 @@ public class Game {
     private int currentPlayer;
     //storing Player IDs
     private String[] playerIds;
-    
     //create an object of the UnoDeck
     private UnoDeck deck;
+    
     //arraylist of an arraylist of all hands (each hand has 1 arraylist of cards)
     private ArrayList<ArrayList<UnoCard>> playerHand;
     private ArrayList<UnoCard> stockpile;
@@ -339,13 +339,14 @@ public class Game {
                else if(gameDirection == true)
                {
                     currentPlayer = currentPlayer - 1 % playerIds.length;
-                    if(gameDirection == -1)
+                    if(currentPlayer == -1)
                     {
                         currentPlayer = playerIds.length - 1;
                     }
                }
            }
 
+           //
            if(card.getValue() == UnoCard.Value.REVERSE)
            {
              JLabel message = new JLabel(pid + " reversed the direction!");
@@ -353,12 +354,23 @@ public class Game {
              JOptionPane.showMessageDialog(null, message);
              
              gameDirection ^= true;
-             if()
+             if(gameDirection == true)
+             {
+                currentPlayer = currentPlayer - 2 % playerIds.length;
+                if(currentPlayer == -1)
+                    {
+                        currentPlayer = playerIds.length - 1;
+                    }
+                if(currentPlayer == -2)
+                    {
+                        currentPlayer = playerIds.length - 2;
+                    }
+             }
+             else if(gameDirection == false)
+             {
+                currentPlayer = (currentPlayer + 2) % playerIds.length;
+             }
            }
-           
-           
-            
-           
             
         }
         
