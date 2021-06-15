@@ -212,7 +212,7 @@ public class Game {
             }
             
             getPlayerHand(pid).add(deck.drawCard());
-            {
+            
                 if(gameDirection == false)
                 {
                     currentPlayer = (currentPlayer + 1) % playerIds.length;
@@ -225,7 +225,7 @@ public class Game {
                         currentPlayer = playerIds.length - 1;
                     }
                 }
-            }
+            
                 
             }
         
@@ -246,6 +246,7 @@ public class Game {
             
             UnoCard.Value actualValue = card.getValue();
             UnoCard.Value expectedValue = validValue;
+            
             
             if(!validCardPlay(card))
             {
@@ -303,7 +304,61 @@ public class Game {
                     }
                 }
             
+           if(card.getColor() == UnoCard.Color.WILD)
+           {
+                validColor = declaredColor;
+           }
+           
+           if(card.getValue() == UnoCard.Value.DRAWTWO)
+           {
+               pid = playerIds[currentPlayer];
+               getPlayerHand(pid).add(deck.drawCard());
+               getPlayerHand(pid).add(deck.drawCard());
+               JLabel message = new JLabel(pid + " drew 2 cards!");
+           }
             
+           if(card.getValue() == UnoCard.Value.WILDFOUR)
+           {
+               pid = playerIds[currentPlayer];
+               getPlayerHand(pid).add(deck.drawCard());
+               getPlayerHand(pid).add(deck.drawCard());
+               getPlayerHand(pid).add(deck.drawCard());
+               getPlayerHand(pid).add(deck.drawCard());
+               JLabel message = new JLabel(pid + " drew 4 cards!");
+           }
+           
+            if(card.getValue() == UnoCard.Value.SKIP)
+           {
+               JLabel message = new JLabel(playerIds[currentPlayer] + " was skipped!");
+               message.setFont(new Font("Arial", Font.BOLD, 38));
+               JOptionPane.showMessageDialog(null, message);
+               if(gameDirection == false)
+               {
+                   currentPlayer = currentPlayer + 1 % playerIds.length;
+               }
+               else if(gameDirection == true)
+               {
+                    currentPlayer = currentPlayer - 1 % playerIds.length;
+                    if(gameDirection == -1)
+                    {
+                        currentPlayer = playerIds.length - 1;
+                    }
+               }
+           }
+
+           if(card.getValue() == UnoCard.Value.REVERSE)
+           {
+             JLabel message = new JLabel(pid + " reversed the direction!");
+             message.setFont(new Font("Arial", Font.BOLD, 38));
+             JOptionPane.showMessageDialog(null, message);
+             
+             gameDirection ^= true;
+             if()
+           }
+           
+           
+            
+           
             
         }
         
